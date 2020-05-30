@@ -2,26 +2,41 @@ package com.RestAssured_LibAPI.Utilities;
 
 import static io.restassured.RestAssured.given;
 
-import com.RestAssured_LibAPI.Objects.CreateBook;
-
 import io.restassured.http.ContentType;
 
+/** This class is used to describe the Methods to handle liv=brary API operations
+ * Such as POST,Get(Book by ID or by Author Name), DELETE.
+ * 
+ * @author Priyanka Deiosarkar,
+ * @author Kailas Andhalkar
+ */
 public class Method_Call {
-	public static Object request_DeleteBookByID;
+	
+	/**
+	 * This Post method will present to upload input Payload of library API to create a book record
+	 * 
+	 * @param body
+	 * @param method
+	 * @return  {@code:String}
+	 */
 
-	public static CreateBook request_postURI(Object body, String method) {
+	public static String request_postURI(Object body, String method) {
 		
 		return given().log().all()
 		.contentType(ContentType.JSON)
 		.body(body)
 		.when()
 		.post(method)
-		.then().log().all().extract().as(CreateBook.class);
-
+		.then().log().all().extract().asString();
 	}
-	
-	public static void request_GetByID(String method) {
-		given().log().all()
+	/** 
+	 * This get method will present to get the book with ID.
+	 * 
+	 * @param method
+	 * @return {@code:String}
+	 */
+	public static String request_GetByID(String method) {
+		return given().log().all()
 		.contentType(ContentType.JSON)
 		.when()
 		.get(method)
@@ -29,6 +44,13 @@ public class Method_Call {
 		.assertThat().statusCode(200)
 		.extract().body().asString();
 	}
+	
+	/**
+	 * This get method will present to get the book with AuthorName.
+	 * 
+	 * @param parameterValues
+	 * @param method
+	 */
 	
 	public static void request_GetByAuthName(String parameterValues, String method) {
 		given().log().all()
@@ -41,6 +63,12 @@ public class Method_Call {
 		.extract().body().asString();
 	}
 	
+	/**
+	 * This delete method will present to delete the books with ID.
+	 * 
+	 * @param delBody
+	 * @param method
+	 */
 	public static Object request_DeleteBookByID(String delBody, String method) {
 		return given().log().all()
 		.contentType(ContentType.JSON).

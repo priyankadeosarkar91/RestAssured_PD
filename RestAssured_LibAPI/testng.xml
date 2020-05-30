@@ -4,6 +4,9 @@
   <test thread-count="5" name="Test">
     <classes>
       <class name="com.RestAssured_LibAPI.TestMethods.GetBookByAuthName_Library_API_Test"/>
+      <class name="com.RestAssured_LibAPI.TestMethods.DeleteBook_Library_API_Test"/>
+      <class name="com.RestAssured_LibAPI.TestMethods.CreateBook_Library_API_Test"/>
+      <class name="com.RestAssured_LibAPI.TestMethods.GetBook_Library_API_Test"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
